@@ -17,6 +17,13 @@ angular.module('servicesModule', [])
                     url: 'http://localhost:3000/flights/carriers/' + carrierName
                 });
                 return detailspromise;
+            },
+            getFlightDetails: function (carrierName, flightFileName) {
+                var detailspromise = $http({
+                    method: 'GET',
+                    url: 'http://localhost:3000/flights/carriers/' + carrierName + '/' + flightFileName
+                });
+                return detailspromise;
             }
         }
     });

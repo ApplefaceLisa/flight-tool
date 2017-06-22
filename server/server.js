@@ -20,6 +20,7 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/flights/carriers', handlerModule.flightCarrierListHandler);
 app.get('/flights/carriers/:carrierName', handlerModule.flightListHandler);
+app.get('/flights/carriers/:carrierName/:flightFileName', handlerModule.flightDetailsHandler);
 
 app.listen(3000);
 console.log('Now we are talking');

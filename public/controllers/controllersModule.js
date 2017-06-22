@@ -24,7 +24,7 @@ angular.module('controllersModule', ['servicesModule'])
             });
     }).controller('carriersDetailsCtrl', function ($scope, dataManagement, $routeParams) {
 
-        var getDataPromise = dataManagement.getCarriersDetails($routeParams.flightId);
+        var getDataPromise = dataManagement.getCarriersDetails($routeParams.carrierName);
 /*
         getDataPromise.success(function (data) {
             $scope.flightDtls = data.data.flights;
@@ -36,8 +36,23 @@ angular.module('controllersModule', ['servicesModule'])
 */
         getDataPromise.then(
             function (data) {
-                $scope.carrier = data.data.data.short_name;
+                $scope.carrierName = data.data.data.short_name;
                 $scope.flightDtls = data.data.data.flights;
+            },
+            function (data, status) {
+                $scope.errorMessage = status;
+            }
+        );
+    }).controller('flightDetailsCtrl', function($scope, dataManagement, $routeParams) {
+        var getDataPromise = dataManagement.getFlightDetails(
+                                    $routeParams.carrierName,
+                                    $routeParams.flightFileName);
+
+        getDataPromise.then(
+            function (data) {
+                var data = data.data.data;
+                $scope.flightName = data.flight_name;
+                $scope.flightDtls = data.flightDtls;
             },
             function (data, status) {
                 $scope.errorMessage = status;

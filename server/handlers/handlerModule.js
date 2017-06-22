@@ -154,6 +154,50 @@ function loadFlightList(carrier_name, callback) {
         })
 }
 
+/*
+ *
+ */
+
+function flightDetailsHandler(req, res) {
+    console.log("I am in flightDetailsHandler");
+    var carrierName = req.params.carrierName;
+    var flightFileName = req.params.flightFileName;
+
+    loadflightDetails(carrierName, flightFileName, function (err, data) {
+        if (err) {
+            res.writeHead(503, {"Content-Type": "application/json"});
+            errorResp.error = err;
+            res.end(JSON.stringify(errorResp) + "\n");
+            return;
+        } else {
+            res.writeHead(200, {"Content-Type": "application/json"});
+            successResp.data = data;
+            res.end(JSON.stringify(successResp) + "\n");
+            return;
+        }
+    })
+}
+
+function loadflightDetails(carrierName, flightFileName, callback) {
+    fs.readFile("../myFiles/" + carrierName + "/" + flightFileName + ".json",
+        'utf-8',
+        function (err, data) {
+          if (err) callback(err, null);
+          else {
+              var obj = JSON.parse(data);
+              var flightDtls = [];
+              for (var key in obj) {
+                  flightDtls.push(obj[key]);
+              }
+              //console.log("loadflightDetails : ", flightDtls);
+              callback(null,
+                      {flight_name: flightFileName,
+                       flightDtls: flightDtls
+                      }
+              );
+          }
+        });
+}
 
 function make_error(err, msg) {
     var e = new Error(msg);
@@ -181,3 +225,4 @@ function no_such_album() {
 
 module.exports.flightCarrierListHandler = flightCarrierListHandler;
 module.exports.flightListHandler = flightListHandler;
+module.exports.flightDetailsHandler = flightDetailsHandler;

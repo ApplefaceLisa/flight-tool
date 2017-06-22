@@ -13,9 +13,13 @@ app.config(function ($routeProvider) {
             templateUrl: 'templates/carriers.html',
             controller: 'carriersCtrl'
         })
-        .when('/viewFlights/:flightId', {
+        .when('/viewFlights/:carrierName', {
             templateUrl: 'templates/carriersDetails.html',
             controller: 'carriersDetailsCtrl'
+        })
+        .when('/viewFlights/:carrierName/:flightFileName', {
+            templateUrl: 'templates/flightDetails.html',
+            controller: 'flightDetailsCtrl'
         })
         .otherwise({
             redirectTo: '/'
