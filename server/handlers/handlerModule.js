@@ -16,7 +16,7 @@ var successResp = {
 };
 
 function flightCarrierListHandler(req, res) {
-    console.log("I am in flightCarrierListHandler");
+    //console.log("I am in flightCarrierListHandler");
     loadflightCarrierList(function (err, data) {
         if (err) {
             res.writeHead(503, {"Content-Type": "application/json"});
@@ -34,7 +34,7 @@ function flightCarrierListHandler(req, res) {
 }
 
 function flightListHandler(req, res) {
-    console.log("I am in flightListHandler");
+    //console.log("I am in flightListHandler");
     //var flightCarrierName = req.url.substr(9, req.url.length - 14);
     var flightCarrierName = req.params.carrierName;
 
@@ -159,7 +159,7 @@ function loadFlightList(carrier_name, callback) {
  */
 
 function flightDetailsHandler(req, res) {
-    console.log("I am in flightDetailsHandler");
+    //console.log("I am in flightDetailsHandler");
     var carrierName = req.params.carrierName;
     var flightFileName = req.params.flightFileName;
 
