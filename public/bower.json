@@ -1,12 +1,12 @@
 {
-  "name": "mean_final",
-  "description": "",
-  "main": "index.html",
+  "name": "my-flights",
+  "homepage": "https://github.com/ApplefaceLisa/flight-tool",
   "authors": [
     "Lisa Li"
   ],
+  "description": "",
+  "main": "index.html",
   "license": "MIT",
-  "homepage": "",
   "private": true,
   "ignore": [
     "**/.*",
@@ -16,7 +16,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular" : "~1.6.4",
-    "angular-route" : "~1.6.4"
+    "angular": "^1.6.4",
+    "angular-route": "^1.6.4"
   }
 }
